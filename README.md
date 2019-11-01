@@ -2,24 +2,22 @@
 ## Welcome to another RPG(_ame_). The main purpose of this game is to see how far you get without dying.
 ## You get **ONE** life. It'll start off easy but will get more '_strategic_'
 
-## _Will be adding screenshots in the near future_
+### _Will be adding screenshots in the near future_
 
-## Don't know what an RPG is? Check this out :: ((https://undertale.com/))
+### Don't know what an RPG is? Check this out :: ((https://undertale.com/))
 
-## Wireframe
+### Wireframe
 
- Stats/Items         ShopKeeper/Arena
-|--------------|    |----------------|
-|              |    |      :man:     |
-|:guardsman:   |    |     :dollar:   |
-|:school_satchel:|  |                |
-|:bomb:        |
-|              |     Text
-|              |    |----------------|
-|              |    |                |
-|              |    |     :book:     |
-|              |    |                |
-|              |    |                |
+| Stats/Items    | Shopkeeper/Arena |
+| :------------: | :----------: |
+|                | :man:        |
+| :guardsman:    | :package:    |
+| :school_satchel:|             |
+|                | Text Box     |
+|                | :----------: |
+|                | :scroll:     |
+|                |              |
+|                |              |
 
 **Psudo Code**
 1. ### Variables and such
@@ -64,10 +62,6 @@
 ``
 ### ...and such
 
-
-<<<<<<< HEAD
-
-
 ### To-Do ::
 **Somewhat in order**
     > * Shopkeeper
@@ -85,6 +79,3 @@
     > * MORE EVERYTHING!
 
 ###### Good luck.
-=======
-###### Good luck.
->>>>>>> 90359d81addaaad4dc3b51d38caee99766d049d0
