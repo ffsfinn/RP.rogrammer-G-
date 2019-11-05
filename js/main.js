@@ -1,14 +1,18 @@
-// NO let EVER!!!
-// let playerGold = 0;
-// let inventory = [];
+// NO var EVER!!!
 
-//Constant Variables
-const button = document.getElementById('button');
-const inventoryList = document.createElement('ol')
+//Caches
+const item1 = document.getElementById('item1');
+const item2 = document.getElementById('item2');
 
+let removed = [];
+
+//Player1
+let playerGold = 100;
+let playerInventory = [];
+let shopInventory = [];
 
 //Items
-let items = [ // use this list to create the items that a customer ban buy each one has a click event
+let items = [
     {
         name : 'sword',
         damageSword: 10,
@@ -21,31 +25,53 @@ let items = [ // use this list to create the items that a customer ban buy each 
     }
  ];
 
- const shopItems = items.map(item => {
-    let playerInvItem = document.createElement('li');
-    playerInvItem.textContent = 
-    inventoryList.appendChild(playerInv);   // turn each item into a dom element and put it on the page
- })
+//Event Listeners :: **Wont push more than one items. Look for a fix later**
+item1.addEventListener('click', function(){
 
-//Player1
-let playerGold = 100;
-let playerInventory = []
-// let playerInv = [];
-
-//Event Listeners
-button.addEventListener('click', function(){
-
-    if(playerGold >= sword.cost) {
-        playerGold -= sword.cost;
-        playerInventory.push(sword);
-    } else if(playerGold < sword) {
-        button.disable = true;
-    } else {
-        return;
+    if(playerGold >= items[0].cost) {
+            playerInventory.push(items[0]);
+            playerGold -= items[0].cost;
+            createElement1();
     }
 
+    removeElement1();
 });
 
+item2.addEventListener('click', function(){
+    
+    if(playerGold >= items[1].cost) {
+            playerInventory.push(items[1]);
+            playerGold -= items[1].cost;
+            createElement2();
+    }
+
+    removeElement2();
+});
+
+//DOM Manipulation :: **Refract code later**
+function createElement1() {
+    playerInv = document.createElement('ol');
+    playerInventory = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInventory.appendChild(playerInv);
+    playerInv.innerHTML = 'Sword';
+};
+
+function createElement2() {
+    playerInv = document.createElement('ol');
+    playerInventory = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInventory.appendChild(playerInv);
+    playerInv.innerHTML = 'Shield';
+};
+
+function removeElement1() {
+    shopInv = document.getElementById('item1');
+    shopInv.disabled = true;
+};
+
+function removeElement2() {
+    shopInv = document.getElementById('item2');
+    shopInv.disabled = true;
+}
 
 
 // let player1 = function(inv, gold) {
