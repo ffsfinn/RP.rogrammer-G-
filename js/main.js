@@ -1,6 +1,7 @@
 // NO var EVER!!!
 
 //Caches
+const buttons = document.getElementById('buttons');
 const item1 = document.getElementById('item1');
 const item2 = document.getElementById('item2');
 
@@ -11,8 +12,14 @@ let playerGold = 100;
 let playerInventory = [];
 let shopInventory = [];
 
+//Shopkeeper
+let shopGold = 500;
+
+function shopKeep() {
+};
+
 //Items
-let items = [
+let items = [ // You can use indexs here?
     {
         name : 'sword',
         damageSword: 10,
@@ -25,7 +32,7 @@ let items = [
     }
  ];
 
-//Event Listeners :: **Wont push more than one items. Look for a fix later**
+//Event Listeners ::
 item1.addEventListener('click', function(){
 
     if(playerGold >= items[0].cost) {
@@ -49,17 +56,17 @@ item2.addEventListener('click', function(){
 });
 
 //DOM Manipulation :: **Refract code later**
-function createElement1() {
+function createElement1() { // Add Parameters
     playerInv = document.createElement('ol');
-    playerInventory = document.getElementById('inv').getElementsByTagName('ul')[0];
-    playerInventory.appendChild(playerInv);
+    playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInv2.appendChild(playerInv);
     playerInv.innerHTML = 'Sword';
 };
 
 function createElement2() {
     playerInv = document.createElement('ol');
-    playerInventory = document.getElementById('inv').getElementsByTagName('ul')[0];
-    playerInventory.appendChild(playerInv);
+    playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInv2.appendChild(playerInv);
     playerInv.innerHTML = 'Shield';
 };
 
@@ -71,25 +78,4 @@ function removeElement1() {
 function removeElement2() {
     shopInv = document.getElementById('item2');
     shopInv.disabled = true;
-}
-
-
-// let player1 = function(inv, gold) {
-//     let playerGold = 500;
-
-// }
-
-// let shop = function(buy, sell) {
-//     let sword = items.sword;
-//     let shield = items.shield;
-
-//     if(playerGold === items.cost) {
-//         //Transfer into inventory. Add Event Listener
-//     };
-
-//     if(playerGold === items.cost) {
-//         //Transfer into inventory. Add Event Listener
-//     };
-
-
-// }
+};
