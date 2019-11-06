@@ -10,17 +10,33 @@ const buttons = document.getElementById('buttons');
 const item1 = document.getElementById('item1');
 const item2 = document.getElementById('item2');
 const press = document.getElementById('randomizer');
+const classButtons = document.querySelectorAll('buttonClass');
 const attack = document.getElementById('atk');
 const defense = document.getElementById('def');
 const pGold = document.getElementById('pGold');
 const sGold = document.getElementById('sGold');
 const start = document.getElementById('start');
-const buttonsAll = document.getElementsByTagName('button');
+const buttonsAll = document.getElementsByTagName('button');;
+const playerHealthShow = document.getElementById('playerHealth');
+const enemyHealthShow = document.getElementById('enemyHealth');
+const player1AttackBtn = document.getElementById('player1')
+
+// Array.from(buttonsAll).filter(item => item.id !== start).forEach(disableButton)
+// disableButtons(...buttonsAll)
 
 let removed = [];
 
+//Enemies
+let enemyHealth = 100;
+let enemyStatsAtk = 0;
+let enemyStatsDef = 0;
+enemyHealthShow1();
+
 //Player1
-let playerGold = 100;
+let playerHealth = 100;
+playerHealthShow1();
+
+let playerGold = 10;
 let playerInventory = [];
 let playerStatsAtk = 0;
 let playerStatsDef = 0;
@@ -29,32 +45,50 @@ let playerStatsDef = 0;
 let shopGold = 500;
 let shopInventory = [];
 
-//StartGame ? Render
+//StartGame ?
+
+startGame();
+player1Attack();
+
 function startGame() {
-    
+
     start.addEventListener('click', function() {
         alert('Choose a class from below! or refresh the page to restart!')
-        removeButton();
+        // removeButton();
+        startGame();
+    });
+    chooseClass();
+};
+
+function player1Attack() {
+
+    player1AttackBtn.addEventListener('click', function() {
+        if(enemyHealth > 0) {
+            enemyHealth -= playerStatsAtk;
+            enemyHealthShow1();
+
+            if(enemyHealth === 0) {
+                alert('Game Over. Refresh to Play Again!');
+            } else if(enemyHealth < 0) {
+                alert('OVERKILL! Refresh to Play Again!');
+            };
+        }
     });
 
-
-    chooseClass();
 };
 
 function chooseClass() {
 
     press.addEventListener('click', function() {
-        playerStats1();
-        playerStats2();
+        playerInitialAtkStats();
+        playerInitialDefStats();
         alert('SIKE! You get random stats! Good luck!')
-        removeButton1();
+        // disableButtons(classButtons);
     });
 
     playerG();
     shopG();
-};
-
-startGame();
+}
 
 //Items
 let items = [ // You can use indexs here?
@@ -77,11 +111,11 @@ item1.addEventListener('click', function(){
             playerInventory.push(items[0]);
             playerGold -= items[0].cost;
             shopGold += items[0].cost;
-            playerStatsAtk += items[0].damageSword;
+            playerAtk();
             createElement1();
     };
 
-    
+
     playerG();
     shopG();
     // removeElement1();
@@ -93,7 +127,7 @@ item2.addEventListener('click', function(){
             playerInventory.push(items[1]);
             playerGold -= items[1].cost;
             shopGold += items[1].cost;
-            playerStatsDef += items[1].shieldBlock;
+            playerDef();
             createElement2();
     };
 
@@ -103,41 +137,50 @@ item2.addEventListener('click', function(){
 });
 
 //More Functions
+function playerAtk() {
+    playerStatsAtk += items[0].damageSword;
+    attack.innerHTML = `Attack :: ${playerStatsAtk}`
+};
+
+function playerDef() {
+    playerStatsDef += items[1].shieldBlock;
+    defense.innerHTML = `Defense :: ${playerStatsDef}`
+};
 
 //DOM Manipulation :: **Refract code later**
 function createElement1() { // Add Parameters
-    playerInv = document.createElement('ol');
-    playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInv = document.createElement('div');
+    playerInv2 = document.getElementById('inv').getElementsByTagName('div')[0];
     playerInv2.appendChild(playerInv);
     playerInv.innerHTML = items[0].name;
 };
 
 function createElement2() {
-    playerInv = document.createElement('ol');
-    playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
+    playerInv = document.createElement('div');
+    playerInv2 = document.getElementById('inv').getElementsByTagName('div')[0];
     playerInv2.appendChild(playerInv);
     playerInv.innerHTML = items[1].name;
 };
 
-function playerStats1() {
+function playerInitialAtkStats() {
     playerStatsAtk = randomNum(3, 10);
-    attack.innerHTML = `${playerStatsAtk}`;
+    attack.innerHTML = `Attack :: ${playerStatsAtk}`;
 };
 
-function playerStats2() {
+function playerInitialDefStats() {
     playerStatsDef = randomNum(3, 10);
-    defense.innerHTML = `${playerStatsDef}`;
+    defense.innerHTML = `Defense :: ${playerStatsDef}`;
 };
 
 function playerG() {
     playerGold;
-    pGold.innerHTML = `${playerGold}`;
+    pGold.innerHTML = `Your Gold :: ${playerGold}`;
 
 };
 
 function shopG() {
     shopGold;
-    sGold.innerHTML = `${shopGold}`;
+    sGold.innerHTML = `Shopkeepers Gold :: ${shopGold}`;
 };
 
 function removeElement1() {
@@ -150,19 +193,26 @@ function removeElement2() {
     shopInv.disabled = true;
 };
 
-function removeButton() {
-    start.disabled = true;
+function playerHealthShow1() {
+    playerHealthShow.innerHTML = `Your Health :: ${playerHealth}`
 };
 
-function removeButton1() { //NOTE TO SELF :: DRY CODING! GAH! CHANGE IT ASAP!
-    disButtons = document.getElementById('dis1');
-    disButtons2 = document.getElementById('dis2');
-    disButtons3 = document.getElementById('dis3');
-    disButtons4 = document.getElementById('dis4');
-    disButtons.disabled = true;
-    disButtons2.disabled = true;
-    disButtons3.disabled = true;
-    disButtons4.disabled = true;
+function enemyHealthShow1() {
+    enemyHealthShow.innerHTML = `Enemies Health :: ${enemyHealth}`
+}
+
+
+//Disable Buttons Function (Still a Work In Progress..)
+function disableButtons(...elements) { // This function takes infinite amount of arguments
+   Array.from(elements).forEach(element => {
+       element.setAttribute('disabled', true) //Then disables them
+   })
+};
+
+function enableButtons(...elements) {
+    Array.from(elements).forEach(element => {
+        element.setAttribute('disabled', true);
+    });
 };
 
 

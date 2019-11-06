@@ -10,30 +10,31 @@
 
 
 </head>
-<body>
+<body id="title">
     <h1 class="title">RP.rogrammer(G)</h1>
 </body>
-<aside id="stats">
+
+<body id="stats">
     <button id="start">Start Game</button>
 
     <div id="randomizer">
-        <button id="dis1">Knight</button>
-        <button id="dis2">Archer</button>
-        <button id="dis3">Mage</button>
-        <button id="dis4">Fighter</button>
+        <button class="buttonClass">Knight</button>
+        <button class="buttonClass">Archer</button>
+        <button class="buttonClass">Mage</button>
+        <button class="buttonClass">Fighter</button>
     </div>    
 
     <div>Stats</div>
-    <ul>Attack :: <ul id="atk"></ul></ul>
-    <ul>Defense :: <ul id="def"></ul></ul>
+    <div id="atk"></div>
+    <div id="def"></div>
     <p id="pGold"></p>
 
     <div>Inventory<div id="goldShowPlayer"></div></div>
-    <div id="inv"><ul></ul></div>
+    <div id="inv"><div></div></div>
 
-</aside>
+</body>
 
-<main class="shopstage">
+<div class="shopstage">
     <div>Shop :: <div id="sGold"></div></div>
 
     <div id="buttons">
@@ -41,7 +42,16 @@
     <button id="item2">Shield</button>
     </div>
 
-</main>
+</div>
+
+<div id="fight">
+
+    <div id="playerHealth"></div>
+    <button id="player1">Attack</button>
+
+    <div id="enemyHealth"></div>
+
+</div>
 
 
 
