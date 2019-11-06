@@ -15,13 +15,15 @@ const defense = document.getElementById('def');
 const pGold = document.getElementById('pGold');
 const sGold = document.getElementById('sGold');
 const start = document.getElementById('start');
+const buttonsAll = document.getElementsByTagName('button');
 
 let removed = [];
 
 //Player1
 let playerGold = 100;
 let playerInventory = [];
-let playerStats = 0;
+let playerStatsAtk = 0;
+let playerStatsDef = 0;
 
 //Shopkeeper
 let shopGold = 500;
@@ -34,6 +36,7 @@ function startGame() {
         alert('Choose a class from below! or refresh the page to restart!')
         removeButton();
     });
+
 
     chooseClass();
 };
@@ -56,12 +59,12 @@ startGame();
 //Items
 let items = [ // You can use indexs here?
     {
-        name : 'sword',
+        name : 'Sword',
         damageSword: 10,
         cost: 10
     },
     {
-        name: 'shield',
+        name: 'Shield',
         shieldBlock: 10,
         cost: 10
     }
@@ -74,12 +77,14 @@ item1.addEventListener('click', function(){
             playerInventory.push(items[0]);
             playerGold -= items[0].cost;
             shopGold += items[0].cost;
+            playerStatsAtk += items[0].damageSword;
             createElement1();
     };
 
+    
     playerG();
     shopG();
-    removeElement1();
+    // removeElement1();
 });
 
 item2.addEventListener('click', function(){
@@ -88,37 +93,40 @@ item2.addEventListener('click', function(){
             playerInventory.push(items[1]);
             playerGold -= items[1].cost;
             shopGold += items[1].cost;
+            playerStatsDef += items[1].shieldBlock;
             createElement2();
-    }
+    };
 
     playerG();
     shopG();
-    removeElement2();
+    // removeElement2();
 });
+
+//More Functions
 
 //DOM Manipulation :: **Refract code later**
 function createElement1() { // Add Parameters
     playerInv = document.createElement('ol');
     playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
     playerInv2.appendChild(playerInv);
-    playerInv.innerHTML = 'Sword'
+    playerInv.innerHTML = items[0].name;
 };
 
 function createElement2() {
     playerInv = document.createElement('ol');
     playerInv2 = document.getElementById('inv').getElementsByTagName('ul')[0];
     playerInv2.appendChild(playerInv);
-    playerInv.innerHTML = 'Shield';
+    playerInv.innerHTML = items[1].name;
 };
 
 function playerStats1() {
-    playerStats = randomNum(3, 10);
-    attack.innerHTML = `${playerStats}`;
+    playerStatsAtk = randomNum(3, 10);
+    attack.innerHTML = `${playerStatsAtk}`;
 };
 
 function playerStats2() {
-    playerStats = randomNum(3, 10);
-    defense.innerHTML = `${playerStats}`;
+    playerStatsDef = randomNum(3, 10);
+    defense.innerHTML = `${playerStatsDef}`;
 };
 
 function playerG() {
