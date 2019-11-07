@@ -1,3 +1,87 @@
-#title {
+body {
+    display: grid;
+    justify-content: center;
+}
+
+#head1 {
+    background-color: black;
+    color: white;
     text-align: center;
+}
+
+#title {
+    font-family: 'Yeon Sung', cursive;
+}
+
+#statsTitle {
+    font-family: 'Yeon Sung', cursive;
+}
+
+#inventory {
+    font-family: 'Yeon Sung', cursive;
+}
+
+#shopTitle {
+    font-family: 'Yeon Sung', cursive;
+}
+
+#playerHealth {
+    font-family: 'Yeon Sung', cursive;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+#enemyHealth {
+    font-family: 'Yeon Sung', cursive;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#player1 {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-size: 30px;
+}
+
+button {
+    font-family: 'Indie Flower', cursive;
+}
+
+#shopKeep {
+    background-color: black;
+}
+
+#shopStage {
+    display: grid;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    text-align: right;
+}
+
+#shopTitle {
+    text-align: left;
+    padding: 0px 2px;
+}
+
+#buttons {
+    text-align: left;
+}
+
+#stats {
+    display: grid;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#fight {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: space-evenly;
+    background-color: black;
+    color: white;
+    padding: 20px 0px 0px 0px;
 }

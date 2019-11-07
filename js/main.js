@@ -48,7 +48,6 @@ let shopInventory = [];
 //StartGame ?
 
 startGame();
-player1Attack();
 
 function startGame() {
 
@@ -56,8 +55,10 @@ function startGame() {
         alert('Choose a class from below! or refresh the page to restart!')
         // removeButton();
         startGame();
+        chooseClass();
+        player1Attack();
+        shopKeeper();
     });
-    chooseClass();
 };
 
 function player1Attack() {
@@ -105,9 +106,10 @@ let items = [ // You can use indexs here?
  ];
 
 //Event Listeners ::
-item1.addEventListener('click', function(){
+function shopKeeper () {
+    item1.addEventListener('click', function(){
 
-    if(playerGold >= items[0].cost) {
+        if(playerGold >= items[0].cost) {
             playerInventory.push(items[0]);
             playerGold -= items[0].cost;
             shopGold += items[0].cost;
@@ -121,9 +123,9 @@ item1.addEventListener('click', function(){
     // removeElement1();
 });
 
-item2.addEventListener('click', function(){
+    item2.addEventListener('click', function(){
     
-    if(playerGold >= items[1].cost) {
+        if(playerGold >= items[1].cost) {
             playerInventory.push(items[1]);
             playerGold -= items[1].cost;
             shopGold += items[1].cost;
@@ -135,6 +137,7 @@ item2.addEventListener('click', function(){
     shopG();
     // removeElement2();
 });
+}
 
 //More Functions
 function playerAtk() {

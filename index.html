@@ -6,16 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RpG gAmE</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Yeon+Sung&display=swap" rel="stylesheet">
     <script defer src="js/main.js" ></script>
 
 
 </head>
-<body id="title">
-    <h1 class="title">RP.rogrammer(G)</h1>
-</body>
 
-<body id="stats">
+<body>
+
+<header id="head1">
+    <h1 id="title">RP.rogrammer(G)</h1>
+    <h2>----------------------------------------------------------------</h2>
     <button id="start">Start Game</button>
+</header>
+
+<main id="stats">
 
     <div id="randomizer">
         <button class="buttonClass">Knight</button>
@@ -24,22 +29,24 @@
         <button class="buttonClass">Fighter</button>
     </div>    
 
-    <div>Stats</div>
+    <div id="statsTitle">Stats</div>
     <div id="atk"></div>
     <div id="def"></div>
     <p id="pGold"></p>
 
-    <div>Inventory<div id="goldShowPlayer"></div></div>
+    <div id="inventory">Inventory<div id="goldShowPlayer"></div></div>
     <div id="inv"><div></div></div>
 
-</body>
+</main>
 
-<div class="shopstage">
-    <div>Shop :: <div id="sGold"></div></div>
+<div id="shopStage">
+
+    <img id="shopKeep" src="https://i.gifer.com/SxK1.gif">
+    <div id="shopTitle">Shop :: <div id="sGold"></div></div>
 
     <div id="buttons">
-    <button id="item1">Sword</button>
-    <button id="item2">Shield</button>
+    <button id="item1">Sword 10G</button>
+    <button id="item2">Shield 10G</button>
     </div>
 
 </div>
@@ -50,8 +57,11 @@
     <button id="player1">Attack</button>
 
     <div id="enemyHealth"></div>
+    <button id="player1">Attack</button>
 
 </div>
+
+</body>
 
 
 
