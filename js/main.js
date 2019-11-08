@@ -82,8 +82,6 @@ function player1() {
 
         if(enemyHealth > 0) {
             enemyHealth -= (playerStatsAtk - enemyStatsDef);
-            enemyInitialAtkStats();
-            enemyInitialDefStats();
             enemyHealthShow1();
 
             if(enemyHealth <= 0) {
@@ -93,6 +91,8 @@ function player1() {
                 }
                 return enemyHealth = 100;
             };
+            enemyInitialAtkStats();
+            enemyInitialDefStats();
         }
     });
     killPlayer();
@@ -180,26 +180,27 @@ function playerInitialDefStats() {
 };
 
 function enemyInitialAtkStats() {
-    enemyStatsAtk = randomNum(5, 20);
+    enemyStatsAtk = randomNum(5, 12);
 };
 
 function enemyInitialDefStats () {
-    enemyStatsDef = randomNum(5, 20);
+    enemyStatsDef = randomNum(5, 12);
 };
 
 function killPlayer() {
+    
     let killTimer = setInterval(function() {
-        if(playerHealth <= 100) {
+        if(playerHealth > 0) {
             playerHealth -= (enemyStatsAtk - playerStatsDef);
             playerHealthShow1();
-        } else if(playerHealth > 0) {
-            playerHealth -= (enemyStatsAtk - playerStatsDef);
-            playerHealthShow1();
-        } else if(playerHealth <= 0) {
-            playerHealthShow1();
+
+            if(playerHealth >= 100) {
+                clearInterval(killTimer);
+            };
+        };
+        if(playerHealth <= 0) {
+            alert('::Game Over::');
             clearInterval(killTimer);
-        } else {
-            return;
         }
 
     }, 2000);
