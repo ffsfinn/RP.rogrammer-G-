@@ -5,6 +5,10 @@ function randomNum(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 };
 
+function randomEnemies(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+};
+
 //Caches
 const buttons = document.getElementById('buttons');
 const item1 = document.getElementById('item1');
@@ -20,9 +24,6 @@ const buttonsAll = document.getElementsByTagName('button');;
 const playerHealthShow = document.getElementById('playerHealth');
 const enemyHealthShow = document.getElementById('enemyHealth');
 const player1AttackBtn = document.getElementById('player1')
-
-// Array.from(buttonsAll).filter(item => item.id !== start).forEach(disableButton)
-// disableButtons(...buttonsAll)
 
 let removed = [];
 
@@ -45,52 +46,6 @@ let playerStatsDef = 0;
 let shopGold = 500;
 let shopInventory = [];
 
-//StartGame ?
-
-startGame();
-
-function startGame() {
-
-    start.addEventListener('click', function() {
-        alert('Choose a class from below! or refresh the page to restart!')
-        // removeButton();
-        startGame();
-        chooseClass();
-        player1Attack();
-        shopKeeper();
-    });
-};
-
-function player1Attack() {
-
-    player1AttackBtn.addEventListener('click', function() {
-        if(enemyHealth > 0) {
-            enemyHealth -= playerStatsAtk;
-            enemyHealthShow1();
-
-            if(enemyHealth === 0) {
-                alert('Game Over. Refresh to Play Again!');
-            } else if(enemyHealth < 0) {
-                alert('OVERKILL! Refresh to Play Again!');
-            };
-        }
-    });
-
-};
-
-function chooseClass() {
-
-    press.addEventListener('click', function() {
-        playerInitialAtkStats();
-        playerInitialDefStats();
-        alert('SIKE! You get random stats! Good luck!')
-        // disableButtons(classButtons);
-    });
-
-    playerG();
-    shopG();
-}
-
 //Items
 let items = [ // You can use indexs here?
     {
@@ -104,6 +59,58 @@ let items = [ // You can use indexs here?
         cost: 10
     }
  ];
+
+//Start Game ?
+startGame();
+
+function startGame() {
+
+    start.addEventListener('click', function() {
+        alert('Choose a class from below! or refresh the page to restart!')
+        startGame();
+        chooseClass();
+        shopKeeper();
+    });
+};
+
+function player1() {
+
+    enemyInitialAtkStats();
+    enemyInitialDefStats();
+
+    player1AttackBtn.addEventListener('click', function() {
+
+        if(enemyHealth > 0) {
+            enemyHealth -= (playerStatsAtk - enemyStatsDef);
+            enemyInitialAtkStats();
+            enemyInitialDefStats();
+            enemyHealthShow1();
+
+            if(enemyHealth <= 0) {
+                if(enemyHealth <= 0) {
+                    playerGold += randomNum(1, 5);
+                    playerG();
+                }
+                return enemyHealth = 100;
+            };
+        }
+    });
+    killPlayer();
+
+};
+
+function chooseClass() {
+
+    press.addEventListener('click', function() {
+        playerInitialAtkStats();
+        playerInitialDefStats();
+        player1();
+        alert('SIKE! You get random stats! Good luck!')
+    });
+
+    playerG();
+    shopG();
+};
 
 //Event Listeners ::
 function shopKeeper () {
@@ -120,7 +127,6 @@ function shopKeeper () {
 
     playerG();
     shopG();
-    // removeElement1();
 });
 
     item2.addEventListener('click', function(){
@@ -135,9 +141,8 @@ function shopKeeper () {
 
     playerG();
     shopG();
-    // removeElement2();
 });
-}
+};
 
 //More Functions
 function playerAtk() {
@@ -150,8 +155,7 @@ function playerDef() {
     defense.innerHTML = `Defense :: ${playerStatsDef}`
 };
 
-//DOM Manipulation :: **Refract code later**
-function createElement1() { // Add Parameters
+function createElement1() {
     playerInv = document.createElement('div');
     playerInv2 = document.getElementById('inv').getElementsByTagName('div')[0];
     playerInv2.appendChild(playerInv);
@@ -173,6 +177,32 @@ function playerInitialAtkStats() {
 function playerInitialDefStats() {
     playerStatsDef = randomNum(3, 10);
     defense.innerHTML = `Defense :: ${playerStatsDef}`;
+};
+
+function enemyInitialAtkStats() {
+    enemyStatsAtk = randomNum(5, 20);
+};
+
+function enemyInitialDefStats () {
+    enemyStatsDef = randomNum(5, 20);
+};
+
+function killPlayer() {
+    let killTimer = setInterval(function() {
+        if(playerHealth <= 100) {
+            playerHealth -= (enemyStatsAtk - playerStatsDef);
+            playerHealthShow1();
+        } else if(playerHealth > 0) {
+            playerHealth -= (enemyStatsAtk - playerStatsDef);
+            playerHealthShow1();
+        } else if(playerHealth <= 0) {
+            playerHealthShow1();
+            clearInterval(killTimer);
+        } else {
+            return;
+        }
+
+    }, 2000);
 };
 
 function playerG() {
@@ -202,20 +232,6 @@ function playerHealthShow1() {
 
 function enemyHealthShow1() {
     enemyHealthShow.innerHTML = `Enemies Health :: ${enemyHealth}`
-}
-
-
-//Disable Buttons Function (Still a Work In Progress..)
-function disableButtons(...elements) { // This function takes infinite amount of arguments
-   Array.from(elements).forEach(element => {
-       element.setAttribute('disabled', true) //Then disables them
-   })
-};
-
-function enableButtons(...elements) {
-    Array.from(elements).forEach(element => {
-        element.setAttribute('disabled', true);
-    });
 };
 
 
