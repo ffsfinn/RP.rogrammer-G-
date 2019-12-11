@@ -82,6 +82,8 @@ function player1() {
 
         if(enemyHealth > 0) {
             enemyHealth -= (playerStatsAtk - enemyStatsDef);
+            enemyInitialAtkStats();
+            enemyInitialDefStats();
             enemyHealthShow1();
 
             if(enemyHealth <= 0) {
@@ -91,8 +93,6 @@ function player1() {
                 }
                 return enemyHealth = 100;
             };
-            enemyInitialAtkStats();
-            enemyInitialDefStats();
         }
     });
     killPlayer();
@@ -195,6 +195,8 @@ function killPlayer() {
             playerHealthShow1();
 
             if(playerHealth >= 100) {
+                playerHealth = 100;
+                playerHealthShow1();
                 clearInterval(killTimer);
             };
         };
